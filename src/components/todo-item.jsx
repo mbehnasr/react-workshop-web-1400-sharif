@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-
+import '../css/todo-item.css'
 
 export default function TodoItem({
   todoItem,
@@ -15,7 +15,7 @@ export default function TodoItem({
   }, [todoItem, onToggle]);
 
   return (
-    <div>
+    <div className='todo-item'>
       <button type="button" onClick={handleDeleteClick}>
         x
       </button>

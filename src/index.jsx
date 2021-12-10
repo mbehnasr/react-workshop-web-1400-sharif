@@ -8,42 +8,12 @@ import {
   Route
 } from "react-router-dom";
 import NotFound from './pages/not-found';
-import { fakeAuthProvider } from './api/fake-api/auth';
 const Application = React.lazy(() => import('./pages/Application'));
 
 
-let AuthContext = React.createContext();
-
-function AuthProvider({ children }) {
-  let [user, setUser] = React.useState(null);
-
-  let signin = (newUser, callback) => {
-    return fakeAuthProvider.signin(() => {
-      setUser(newUser);
-      callback();
-    });
-  };
-
-  let signout = (callback) => {
-    return fakeAuthProvider.signout(() => {
-      setUser(null);
-      callback();
-    });
-  };
-
-  let value = { user, signin, signout };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-function useAuth() {
-  return React.useContext(AuthContext);
-}
-
-console.log(ReactDOM.render(
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
         <Routes>
           <Route path="/" /* element={<GlobalHeader />} */ >
 
@@ -60,12 +30,10 @@ console.log(ReactDOM.render(
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </AuthProvider>
     </BrowserRouter>
     {/* <Application /> */}
   </React.StrictMode>,
   document.getElementById('root')
-)
 )
 
 

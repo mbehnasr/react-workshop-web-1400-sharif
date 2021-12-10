@@ -3,4 +3,14 @@
     width: 100%;
     align-self: center;
     justify-content: center;
+    width: 80%;
+    margin-top: 100px;
+}
+
+.add-form input{
+    border: none;
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 12px;
+    
 }
